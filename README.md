@@ -1,6 +1,5 @@
 # JRC-TMF-Based Multi-Source Land-Cover Data Fusion
-### Testing: Modified Historical Land-Cover Data for 2015-2025 
-### Case Study: Kapuas Hulu District, West Kalimantan
+### Testing: Modified Historical Land-Cover Data for 2015-2025 | Case Study: Kapuas Hulu District, West Kalimantan
 
 ![Version](https://img.shields.io/badge/version-1.0--2026-blue)
 ![Platform](https://img.shields.io/badge/platform-Google%20Earth%20Engine-green)
