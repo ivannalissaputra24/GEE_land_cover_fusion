@@ -1,5 +1,5 @@
 # JRC-TMF-Based Multi-Source Land-Cover Data Fusion
-### Testing: Modified Historical Land-Cover Data for 2015–2025 
+### Testing: Modified Historical Land-Cover Data for 2015-2025 
 ### Case Study: Kapuas Hulu District, West Kalimantan
 
 ![Version](https://img.shields.io/badge/version-1.0--2026-blue)
@@ -43,7 +43,7 @@ This repository documents a **multi-source data fusion approach** that corrects 
 | Item | Description |
 |---|---|
 | Forest definition | Tree-covered landscape ≥ 0.25 ha, canopy cover ≥ 30%, tree height ≥ 5 m (Forestry Ministry Regulation P.14/2004) |
-| Primary dataset | JRC-TMF Annual Changes 1990–2025 (v1_2025) |
+| Primary dataset | JRC-TMF Annual Changes 1990-2025 (v1_2025) |
 | Baseline year | 2015 |
 | Propagation period | 2016-2025 |
 | Area of interest | Kapuas Hulu District (BIG, 2023 boundary) with a 120 m buffer |
@@ -70,13 +70,13 @@ Only peer-reviewed datasets with OA ≥ 80% and resolution ≤ 30 m were used, w
 | # | Dataset | Role | Reference |
 |---|---|---|---|
 | 1 | JRC Tropical Moist Forests (TMF) v1_2025 | Primary (corrected) | Vancutsem et al. (2021) |
-| 2 | Global Land Cover and Land Use Change 2000–2020 v2 (GLCLU2020) | Multi-attribute voter | Potapov et al. (2022) |
+| 2 | Global Land Cover and Land Use Change 2000-2020 v2 (GLCLU2020) | Multi-attribute voter | Potapov et al. (2022) |
 | 3 | Hansen Global Forest Change v1.13 | Multi-attribute voter | Hansen et al. (2013) |
-| 4 | Global Land Cover Estimation (GLanCE) 2001–2019 v1 | Multi-attribute voter | See report |
+| 4 | Global Land Cover Estimation (GLanCE) 2001-2019 v1 | Multi-attribute voter | See report |
 | 5 | MapBiomas Indonesia Collection 4.1 (2015) | Multi-attribute voter | MBI (2023) |
-| 6 | Global Cropland Extent 2000–2019 (GCE) | Single-attribute voter | Potapov et al. (2021) |
+| 6 | Global Cropland Extent 2000-2019 (GCE) | Single-attribute voter | Potapov et al. (2021) |
 | 7 | GFSAD Global Cropland Extent (GCEP30) | Single-attribute voter | Thenkabail et al. (2021) |
-| 8 | Global oil palm extent and planting year 1990–2021 (GoP) | Single-attribute voter | Descals et al. (2024) |
+| 8 | Global oil palm extent and planting year 1990-2021 (GoP) | Single-attribute voter | Descals et al. (2024) |
 | 9 | GHS-BUILT-C 2018 | Override layer | Pesaresi et al. (2024) |
 
 **Voter types**
@@ -84,7 +84,7 @@ Only peer-reviewed datasets with OA ≥ 80% and resolution ≤ 30 m were used, w
 - **Single-attribute voters:** datasets describing one class only (e.g., cropland); they abstain for all other pixels.
 - **Override layers:** built-up/settlement datasets that reclassify pixels regardless of the vote.
 
-> **Temporal note:** GCE is available in 4-year epochs (the 2015 layer represents 2012–2015). GHS-BUILT-C is only available for 2018; built-up areas are assumed to be relatively stable, making this discrepancy acceptable.
+> **Temporal note:** GCE is available in 4-year epochs (the 2015 layer represents 2012-2015). GHS-BUILT-C is only available for 2018; built-up areas are assumed to be relatively stable, making this discrepancy acceptable.
 
 ---
 
@@ -98,13 +98,13 @@ All datasets are reprojected and resampled to the native grid, CRS, and 30 m res
 
 | Code | Meaning |
 |---|---|
-| 1 | **Forest** – source explicitly identifies the pixel as forest |
-| 2 | **Non-forest** – source explicitly identifies non-forest (cropland, built-up, bare land, water, etc.) |
-| 0 | **Abstain** – no information, class outside dataset scope, or no-data |
+| 1 | **Forest** - source explicitly identifies the pixel as forest |
+| 2 | **Non-forest** - source explicitly identifies non-forest (cropland, built-up, bare land, water, etc.) |
+| 0 | **Abstain** - no information, class outside dataset scope, or no-data |
 
 Additional adjustments:
-- **Hansen GFC:** forest defined as year-2000 tree cover ≥ 30%; pixels with forest loss during 2001–2015 are masked and reclassified as non-forest.
-- **GoP:** planting years converted to nominal years; stacked layers from 1980–2015 give cumulative oil palm extent up to 2015.
+- **Hansen GFC:** forest defined as year-2000 tree cover ≥ 30%; pixels with forest loss during 2001-2015 are masked and reclassified as non-forest.
+- **GoP:** planting years converted to nominal years; stacked layers from 1980-2015 give cumulative oil palm extent up to 2015.
 
 ### 2. Multi-source fusion (2015 baseline)
 
@@ -122,9 +122,9 @@ Reclassified pixels become **JRC-TMF Class 6 (Other land cover)**.
 
 Forest patches smaller than about **0.27 ha** (three contiguous 30 m pixels, 8-connected adjacency) are reclassified as Class 6.
 
-### 4. Temporal propagation (2016–2025)
+### 4. Temporal propagation (2016-2025)
 
-Boolean rules enforce consistency with the corrected baseline while keeping the original legend (Classes 1–6):
+Boolean rules enforce consistency with the corrected baseline while keeping the original legend (Classes 1-6):
 
 - **Forest extent constraint:** forest (Class 1 or 2) in year *Y* that falls outside the corrected forest extent and does not intersect Forest Regrowth (Class 4) in the corrected image of *Y-1* → Class 6.
 - **Deforestation constraint:** Deforested land (Class 3) in year *Y* outside the forested and deforested areas of the corrected image of *Y-1* → Class 6.
@@ -153,7 +153,7 @@ END FOR
 
 - **Reference year:** 2020 (limited by imagery availability)
 - **Coverage:** 14,633 km² (~47% of the district's 31,326 km²)
-- **Reference imagery:** Planet NICFI mosaics (~4.77 m, Jun–Aug 2020), supplemented by Google Earth imagery
+- **Reference imagery:** Planet NICFI mosaics (~4.77 m, Jun-Aug 2020), supplemented by Google Earth imagery
 - **Interpretation:** visual, on a 30 m × 30 m grid at 1:4,000 scale; labels are Forest or Non-forest following MoEF (2020) key image interpretation criteria
 - **Samples:** 3,695 points total
   - 2,493 stratified random (5 strata based on correction pathways)
@@ -197,7 +197,7 @@ Area statistics are **pixel-based (GEE) and indicative only**.
 | 5 Permanent/seasonal water | 785 | 2.5% |
 | 6 Other land cover | 988 | 3.1% |
 
-**Effect of the correction (mean 2015–2025 vs. original)**
+**Effect of the correction (mean 2015-2025 vs. original)**
 - Undisturbed TMF: ~0.2% (≈ 50 km²) difference
 - Degraded TMF: ~470 km² (≈ 14%) difference
 - Deforested land: ~2.3% (≈ 43 km²) difference
@@ -229,7 +229,7 @@ Area statistics are **pixel-based (GEE) and indicative only**.
 ├── README.md
 ├── annex/
 │   ├── 01_legend_harmonization/           # Annex 01
-│   ├── 02_processing_scripts/             # Annex 02 – GEE scripts
+│   ├── 02_processing_scripts/             # Annex 02 - GEE scripts
 │   └── 03_key_image_interpretation/       # Annex 03
 └── LICENSE
 ```
@@ -241,11 +241,11 @@ The workflow runs in [Google Earth Engine](https://earthengine.google.com/).
 1. Obtain a GEE account with access to the input datasets listed above.
 2. Open the scripts in `annex/02_processing_scripts/` in the GEE Code Editor.
 3. Run in order:
-   1. Data preparation – reclassification and alignment to the JRC-TMF grid (voter and override layers)
-   2. 2015 baseline – voting, override, and MMU filtering
-   3. Temporal propagation – 2016–2025
-   4. Accuracy assessment – sampling and confusion matrix
-4. Export the annual layers (2015–2025) as needed.
+   1. Data preparation - reclassification and alignment to the JRC-TMF grid (voter and override layers)
+   2. 2015 baseline - voting, override, and MMU filtering
+   3. Temporal propagation - 2016-2025
+   4. Accuracy assessment - sampling and confusion matrix
+4. Export the annual layers (2015-2025) as needed.
 
 ---
 
@@ -253,16 +253,16 @@ The workflow runs in [Google Earth Engine](https://earthengine.google.com/).
 
 If you use this work, please cite:
 
-> Saputra, I. (2026). *JRC-TMF-Based Multi-Source Land-Cover Data Fusion: Modified Historical Land-Cover Data for 2015–2025 in Kapuas Hulu District* (Version 1.0-2026). Technical Report. Bentang Kalimantan Tangguh (BKT), Program Hutan Desa (PHD).
+> Saputra, I. (2026). *JRC-TMF-Based Multi-Source Land-Cover Data Fusion: Modified Historical Land-Cover Data for 2015-2025 in Kapuas Hulu District* (Version 1.0-2026). Technical Report. Bentang Kalimantan Tangguh (BKT), Program Hutan Desa (PHD).
 
 ## Key References
 
-- Vancutsem, C. et al. (2021). Long-term (1990–2019) monitoring of forest cover changes in the humid tropics. *Science Advances*, 7(10). https://doi.org/10.1126/sciadv.abe1603
-- Hansen, M. C. et al. (2013). High-resolution global maps of 21st-century forest cover change. *Science*, 342(6160), 850–853. https://doi.org/10.1126/science.1244693
-- Potapov, P. et al. (2022). The Global 2000–2020 Land Cover and Land Use Change Dataset Derived From the Landsat Archive. *Frontiers in Remote Sensing*, 3. https://doi.org/10.3389/frsen.2022.856903
-- Li, B. et al. (2023). An improved global land cover mapping in 2015 with 30 m resolution (GLC-2015) based on a multisource product-fusion approach. *Earth System Science Data*, 15(6), 2347–2373. https://doi.org/10.5194/essd-15-2347-2023
-- Bourgoin, C. et al. (2026). GFC2020: a global map of forest land use for year 2020 to support the EU Deforestation Regulation. *Earth System Science Data*, 18(2), 1331–1365. https://doi.org/10.5194/essd-18-1331-2026
-- Clinton, N., Yu, L., & Gong, P. (2015). Geographic stacking: Decision fusion to increase global land cover map accuracy. *ISPRS Journal of Photogrammetry and Remote Sensing*, 103, 57–65. https://doi.org/10.1016/j.isprsjprs.2015.02.010
+- Vancutsem, C. et al. (2021). Long-term (1990-2019) monitoring of forest cover changes in the humid tropics. *Science Advances*, 7(10). https://doi.org/10.1126/sciadv.abe1603
+- Hansen, M. C. et al. (2013). High-resolution global maps of 21st-century forest cover change. *Science*, 342(6160), 850-853. https://doi.org/10.1126/science.1244693
+- Potapov, P. et al. (2022). The Global 2000-2020 Land Cover and Land Use Change Dataset Derived From the Landsat Archive. *Frontiers in Remote Sensing*, 3. https://doi.org/10.3389/frsen.2022.856903
+- Li, B. et al. (2023). An improved global land cover mapping in 2015 with 30 m resolution (GLC-2015) based on a multisource product-fusion approach. *Earth System Science Data*, 15(6), 2347-2373. https://doi.org/10.5194/essd-15-2347-2023
+- Bourgoin, C. et al. (2026). GFC2020: a global map of forest land use for year 2020 to support the EU Deforestation Regulation. *Earth System Science Data*, 18(2), 1331-1365. https://doi.org/10.5194/essd-18-1331-2026
+- Clinton, N., Yu, L., & Gong, P. (2015). Geographic stacking: Decision fusion to increase global land cover map accuracy. *ISPRS Journal of Photogrammetry and Remote Sensing*, 103, 57-65. https://doi.org/10.1016/j.isprsjprs.2015.02.010
 
 The complete reference list is in the technical report.
 
@@ -273,4 +273,4 @@ To be specified.
 
 ## Contact
 
-Bentang Kalimantan Tangguh (BKT) – Program Hutan Desa (PHD), Kapuas Hulu District, West Kalimantan, Indonesia.
+Bentang Kalimantan Tangguh (BKT) - Program Hutan Desa (PHD), Kapuas Hulu District, West Kalimantan, Indonesia.
