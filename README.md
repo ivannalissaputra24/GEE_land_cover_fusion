@@ -95,8 +95,7 @@ Only peer-reviewed datasets with OA ≥ 80% and resolution ≤ 30 m were used, w
 
 ## Methodology
 
-![Methodological framework](docs/fig1.jpeg)
-<!-- TODO: add Figure 1 from the report to docs/figures/ -->
+![Methodological framework](docs/fig1.jpg)
 
 ### 1. Pre-processing and legend harmonization
 
@@ -233,9 +232,6 @@ Area statistics are **pixel-based (GEE) and indicative only**.
 ```text
 .
 ├── README.md
-├── docs/
-│   ├── Technical_Report_v1.0-2026.pdf     # Full technical report
-│   └── figures/
 ├── annex/
 │   ├── 01_legend_harmonization/           # Annex 01
 │   ├── 02_processing_scripts/             # Annex 02 – GEE scripts
@@ -255,8 +251,6 @@ The workflow runs in [Google Earth Engine](https://earthengine.google.com/).
    3. Temporal propagation – 2016–2025
    4. Accuracy assessment – sampling and confusion matrix
 4. Export the annual layers (2015–2025) as needed.
-
-<!-- TODO: add links to the GEE scripts and the interactive visualization / area-statistics app referenced in the report annexes -->
 
 ---
 
