@@ -18,7 +18,7 @@ var verExport = "v6";
 // Notes for version export tracking documentation
 var notes = "Add MBI layer; revised GFC to 30%TH";
 // Define the asset ID path for the Kapuas Hulu Area of Interest (AOI) shapefile
-var AOI_ASSET = '';
+var AOI_ASSET = 'users/saputraivannalis24/modified_jrc_tmf/admin_kh_big_2023';
 // Load the AOI FeatureCollection and apply a 120-meter buffer to all features to ensure edge coverage
 var AOI = ee.FeatureCollection(AOI_ASSET).map(function(a) {
   return a.buffer(120);
@@ -231,7 +231,7 @@ Map.addLayer(outlinedAoi, {color: 'white'}, 'Kapuas Hulu AOI Boundary', true);
 // Extract projection object configuration properties into a client-side dictionary object
 tmfProj = tmfProj.getInfo();
 // Define target output Earth Engine Asset path using version identifier string
-var assetPath = '_' + verExport;
+var assetPath = 'users/saputraivannalis24/modified_jrc_tmf/voters_and_overrides_' + verExport;
 // Submit export task to GEE Task Manager using server-side CRS and transform from TMF anchor projection
 Export.image.toAsset({
   image: votersAndOverrides,                            
