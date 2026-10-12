@@ -45,7 +45,7 @@ This repository documents a **multi-source data fusion approach** that corrects 
 | Forest definition | Tree-covered landscape ≥ 0.25 ha, canopy cover ≥ 30%, tree height ≥ 5 m (Forestry Ministry Regulation P.14/2004) |
 | Primary dataset | JRC-TMF Annual Changes 1990–2025 (v1_2025) |
 | Baseline year | 2015 |
-| Propagation period | 2016–2025 |
+| Propagation period | 2016-2025 |
 | Area of interest | Kapuas Hulu District (BIG, 2023 boundary) with a 120 m buffer |
 | Method | Majority-voting fusion + Boolean-rule temporal propagation |
 | Computing environment | Google Earth Engine (GEE) |
