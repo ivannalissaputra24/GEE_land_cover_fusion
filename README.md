@@ -1,12 +1,11 @@
 # JRC-TMF-Based Multi-Source Land-Cover Data Fusion
-### Modified Historical Land-Cover Data for 2015–2025 in Kapuas Hulu District, West Kalimantan
+### Testing: Modified Historical Land-Cover Data for 2015–2025 
+### Case Study: Kapuas Hulu District, West Kalimantan
 
 ![Version](https://img.shields.io/badge/version-1.0--2026-blue)
 ![Platform](https://img.shields.io/badge/platform-Google%20Earth%20Engine-green)
 ![Resolution](https://img.shields.io/badge/resolution-30%20m-lightgrey)
 ![Period](https://img.shields.io/badge/period-2015--2025-orange)
-
-Technical report and processing workflow developed by **Bentang Kalimantan Tangguh (BKT)** for the **Program Hutan Desa (PHD)**, Kapuas Hulu District, West Kalimantan Province, Indonesia.
 
 **Author:** Ivannalis Saputra
 **Version:** 1.0-2026 (10-10-2026)
