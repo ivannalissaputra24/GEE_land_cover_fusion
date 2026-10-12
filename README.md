@@ -28,10 +28,6 @@ This repository documents a **multi-source data fusion approach** that corrects 
 | Forest omission error | 6.45% | 11.26% |
 | Non-Forest commission error | 13.82% | 15.87% |
 
-- The modified 2025 map shows forest (Undisturbed + Degraded TMF) covering about **27,058 km² (85.8%)** of the district.
-- The modified map exceeds the 80% accuracy threshold; the original does not.
-- The gain is large for stratified random samples (+12.96 pp) but negligible for systematic samples (−0.25 pp). See [Limitations](#limitations).
-
 ---
 
 ## Objectives
