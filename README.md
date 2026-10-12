@@ -90,7 +90,7 @@ Only peer-reviewed datasets with OA ≥ 80% and resolution ≤ 30 m were used, w
 
 ## Methodology
 
-![Methodological framework](docs/fig1.jpg)
+![Methodological framework](docs/figure/fig1.png)
 
 ### 1. Pre-processing and legend harmonization
 
