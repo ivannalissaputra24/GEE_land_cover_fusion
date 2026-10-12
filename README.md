@@ -222,10 +222,7 @@ Area statistics are **pixel-based (GEE) and indicative only**.
 ---
 
 ## Repository Structure
-
-<!-- TODO: adjust to match the actual repository contents -->
 ```text
-.
 ├── README.md
 ├── annex/
 │   ├── 01_legend_harmonization/           # Annex 01
@@ -233,20 +230,6 @@ Area statistics are **pixel-based (GEE) and indicative only**.
 │   └── 03_key_image_interpretation/       # Annex 03
 └── LICENSE
 ```
-
-## Usage
-
-The workflow runs in [Google Earth Engine](https://earthengine.google.com/).
-
-1. Obtain a GEE account with access to the input datasets listed above.
-2. Open the scripts in `annex/02_processing_scripts/` in the GEE Code Editor.
-3. Run in order:
-   1. Data preparation - reclassification and alignment to the JRC-TMF grid (voter and override layers)
-   2. 2015 baseline - voting, override, and MMU filtering
-   3. Temporal propagation - 2016-2025
-   4. Accuracy assessment - sampling and confusion matrix
-4. Export the annual layers (2015-2025) as needed.
-
 ---
 
 ## Citation
