@@ -14,10 +14,11 @@
  * ============================================================================
  */
 // Define the version string for the export asset name
-var verExport = "v6";
+var verExport = "v1";
 // Notes for version export tracking documentation
-var notes = "Add MBI layer; revised GFC to 30%TH";
+var notes = "......";
 // Define the asset ID path for the Kapuas Hulu Area of Interest (AOI) shapefile
+// e.g.,
 var AOI_ASSET = 'users/saputraivannalis24/modified_jrc_tmf/admin_kh_big_2023';
 // Load the AOI FeatureCollection and apply a 120-meter buffer to all features to ensure edge coverage
 var AOI = ee.FeatureCollection(AOI_ASSET).map(function(a) {
@@ -30,11 +31,15 @@ var BASE_YEAR = 2015;
 // ==========================================================================
 // 0. DATASET REGISTER
 // ==========================================================================
-// Load the JRC TMF Annual Changes image collection
+// Load the JRC TMF Annual Changes image collection. The baseline year/version can be adjusted according to preference.
+// Note: Any additional dataset can be added to the register, even if its use
+// in the voting process will be configured separately in Step 2 (Script 2).
+// Add a land-cover class and pixel-value harmonization function (line 75 so on) for each
+// dataset, following the harmonized scheme defined in lines 11-13.
 var JRC_TMF_COLL = ee.ImageCollection('projects/JRC/TMF/v1_2025/AnnualChanges');
 // Load the GLAD LCLUC image for the target BASE_YEAR
 var GLCLU2020 = ee.Image('projects/glad/GLCLU2020/v2/LCLUC_' + BASE_YEAR);
-// Load the Hansen GFC v1.13 dataset configuration parameters
+// Load the current Hansen GFC version and define configuration parameters
 var treeCovTh = 30; // Selected tree cover percentage threshold
 var hansen_gfc = ee.Image('UMD/hansen/global_forest_change_2025_v1_13');
 // Load the GLANCE Image Collection for land cover mapping
@@ -62,13 +67,13 @@ var GHSL_built_raw = ee.Image('JRC/GHSL/P2023A/GHS_BUILT_C/2018');
 JRC_TMF_COLL = JRC_TMF_COLL.filter(ee.Filter.eq("system:index", "ASIA"));
 // Extract native projection (CRS and transform) from the first image's first band
 var tmfProj = JRC_TMF_COLL.first().select(0).projection();
-// Print nominal scale (resolution in meters) to console to verify target grid scale (~30m)
+// Print nominal scale
 print('TMF Anchor Projection Nominal Scale (m):', tmfProj.nominalScale());
 // ==========================================================================
 // 2. VOTER LAYER PROCESSING (Standardizing into 0/1/2 Scheme)
 // ==========================================================================
 // --- GLCLU (GLAD Global Land Cover & Land Use) ---
-// Function to standardize GLCLU classes into Forest (1), Non-Forest (2), and Abstain (0)
+// Function to harmonize GLCLU classes into Forest (1), Non-Forest (2), and Abstain (0)
 function GLCLU2020Processing(img) {
   var forestValues = ee.List.sequence(27, 48).cat(ee.List.sequence(127, 148));
   var nonForestValues = ee.List.sequence(0, 26)
